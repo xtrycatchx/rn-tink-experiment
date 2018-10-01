@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
-import { TouchableOpacity, View, Text, TextInput, Picker } from 'react-native';
+import { TouchableOpacity, View, Text, TextInput, Picker, Dimensions } from 'react-native';
 import { encryptAsymmetric, encryptSymmetric } from './UglyCrypto';
 
 export default class App extends Component {
 
   state = {
-    encrypted: null,
+    output: null,
+    plain: 'Useless Placeholder',
     cipher: null
   }
 
   onPress = () => {
     const cipher = this.state.cipher === "Symmetric" ? encryptSymmetric : encryptAsymmetric
-    cipher("hello", "what").then(encrypted => {
-      this.setState({ encrypted })
+    cipher(this.state.plain, "what").then(output => {
+      this.setState({ output })
     })
   }
 
@@ -27,9 +28,9 @@ export default class App extends Component {
       }} >
 
       <TextInput
-        style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-        onChangeText={(text) => this.setState({text})}
-        value={this.state.text}
+        style={{height: 40,backgroundColor: "#000", color: "gray", padding: 10, width: Dimensions.get('window').width-50, borderColor: 'gray', borderWidth: .5}}
+        onChangeText={(plain) => this.setState({plain})}
+        value={this.state.plain}
       />
 
         <View style={{
@@ -40,9 +41,9 @@ export default class App extends Component {
 
           <Picker
             selectedValue={this.state.cipher}
-            style={{ height: 20, width: 100, marginTop: -200 }}
+            style={{ width: 100, }}
             itemStyle={{ backgroundColor: "#141513", color: "#638149", fontSize: 17 }}
-            onValueChange={itemValue => this.setState({ cipher: itemValue })}>
+            onValueChange={cipher => this.setState({ cipher})}>
             <Picker.Item key="Symmetric" label="AEAD" value="Symmetric" />
             <Picker.Item key="Assymetric" label="HYBRID" value="Assymetric" />
           </Picker>
@@ -67,12 +68,12 @@ export default class App extends Component {
 
         </View>
 
-        {this.state.encrypted && <View style={{ margin: 20, padding: 20, backgroundColor: "#141544" }}>
+        {this.state.output && <View style={{ margin: 20, padding: 20, backgroundColor: "#141544" }}>
           <Text style={{
             color: '#ddd',
             fontStyle: 'normal',
           }}>
-            {this.state.encrypted}
+            {this.state.output}
           </Text>
         </View>}
       </View>

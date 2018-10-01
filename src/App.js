@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TouchableOpacity, View, Text, Picker } from 'react-native';
+import { TouchableOpacity, View, Text, TextInput, Picker } from 'react-native';
 import { encryptAsymmetric, encryptSymmetric } from './UglyCrypto';
 
 export default class App extends Component {
@@ -25,6 +25,12 @@ export default class App extends Component {
         justifyContent: 'center',
         alignItems: 'center'
       }} >
+
+      <TextInput
+        style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+        onChangeText={(text) => this.setState({text})}
+        value={this.state.text}
+      />
 
         <View style={{
           flexDirection: 'row',

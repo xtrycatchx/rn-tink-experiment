@@ -18,6 +18,7 @@ export default class App extends Component {
   }
 
   render() {
+    const { output } = this.state;
     return (
       <View style={{
         flex: 1,
@@ -68,12 +69,12 @@ export default class App extends Component {
 
         </View>
 
-        {this.state.output && <View style={{ margin: 20, padding: 20, backgroundColor: "#141544" }}>
+        {output && <View style={{ margin: 20, padding: 20, backgroundColor: '#141544' }}>
           <Text style={{
             color: '#ddd',
             fontStyle: 'normal',
           }}>
-            {this.state.output}
+            {output}
           </Text>
         </View>}
       </View>

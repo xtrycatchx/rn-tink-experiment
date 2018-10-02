@@ -11,7 +11,7 @@ export default class App extends Component {
   }
 
   onPress = () => {
-    const cipher = this.state.cipher === "Symmetric" ? encryptSymmetric : encryptAsymmetric
+    const cipher = this.state.cipher === 'Symmetric' ? encryptSymmetric : encryptAsymmetric
     cipher(this.state.plain, "what").then(output => {
       this.setState({ output })
     })
@@ -28,7 +28,7 @@ export default class App extends Component {
       }} >
 
       <TextInput
-        style={{height: 40,backgroundColor: "#000", color: "gray", padding: 10, width: Dimensions.get('window').width-50, borderColor: 'gray', borderWidth: .5}}
+        style={{height: 40,backgroundColor: '#000', color: 'gray', padding: 10, width: Dimensions.get('window').width-50, borderColor: 'gray', borderWidth: .5}}
         onChangeText={(plain) => this.setState({plain})}
         value={this.state.plain}
       />
@@ -42,10 +42,10 @@ export default class App extends Component {
           <Picker
             selectedValue={this.state.cipher}
             style={{ width: 100, }}
-            itemStyle={{ backgroundColor: "#141513", color: "#638149", fontSize: 17 }}
+            itemStyle={{ backgroundColor: '#141513', color: '#638149', fontSize: 17 }}
             onValueChange={cipher => this.setState({ cipher})}>
-            <Picker.Item key="Symmetric" label="AEAD" value="Symmetric" />
-            <Picker.Item key="Assymetric" label="HYBRID" value="Assymetric" />
+            <Picker.Item key='Symmetric' label='AEAD' value='Symmetric' />
+            <Picker.Item key='Assymetric' label='HYBRID' value='Assymetric' />
           </Picker>
 
           <TouchableOpacity

@@ -30,12 +30,10 @@ const assymetricKey = {
   }]
 }
 
-function encryptSymmetric(data, contextInfo) {
-  return UglyCrypto.encryptSymmetric(data, contextInfo, JSON.stringify(symmetricKey));
-}
+const encryptSymmetric = (data, contextInfo) =>
+    UglyCrypto.encryptSymmetric(data, contextInfo, JSON.stringify(symmetricKey));
 
-function encryptAsymmetric(data, contextInfo) {
-  return UglyCrypto.encryptAsymmetric(data, contextInfo, JSON.stringify(assymetricKey));
-}
+const encryptAsymmetric = (data, contextInfo) =>
+    UglyCrypto.encryptAsymmetric(data, contextInfo, JSON.stringify(assymetricKey));
 
 export { encryptSymmetric, encryptAsymmetric }
